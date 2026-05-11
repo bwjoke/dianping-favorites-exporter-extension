@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <title>Dianping Favorites Exporter</title>
+    <style>
+      :root {
+        color-scheme: light;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      }
+
+      body {
+        width: 340px;
+        margin: 0;
+        padding: 14px;
+        color: #28323c;
+        background: #fff8f0;
+      }
+
+      h1 {
+        margin: 0 0 12px;
+        font-size: 16px;
+        font-weight: 650;
+        color: #e85d18;
+      }
+
+      label {
+        display: block;
+        margin: 10px 0 4px;
+        font-size: 12px;
+        color: #6b4f3c;
+      }
+
+      input[type="number"] {
+        box-sizing: border-box;
+        width: 100%;
+        height: 32px;
+        border: 1px solid #ffd2a8;
+        border-radius: 6px;
+        padding: 0 8px;
+        color: #28323c;
+        background: #ffffff;
+      }
+
+      input[type="number"]:focus {
+        outline: 2px solid #ffb35c;
+        outline-offset: 1px;
+        border-color: #ff8a2a;
+      }
+
+      .row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+      }
+
+      .check {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-top: 10px;
+        font-size: 13px;
+        color: #3f3a35;
+      }
+
+      button {
+        width: 100%;
+        height: 34px;
+        margin-top: 12px;
+        border: 0;
+        border-radius: 6px;
+        color: white;
+        background: #ff6f1a;
+        font-weight: 650;
+        cursor: pointer;
+      }
+
+      button:hover {
+        background: #f45f0b;
+      }
+
+      button.secondary {
+        color: #5a3b23;
+        background: #ffd49f;
+      }
+
+      button.secondary:hover {
+        background: #ffc47a;
+      }
+
+      #statusText {
+        min-height: 34px;
+        margin-top: 10px;
+        font-size: 12px;
+        line-height: 1.45;
+        color: #6b4f3c;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>大众点评收藏本地导出</h1>
+
+    <div class="row">
+      <div>
+        <label for="maxScrolls">自动滚动次数</label>
+        <input id="maxScrolls" type="number" min="0" step="1" value="20">
+      </div>
+      <div>
+        <label for="maxItems">最多商户数</label>
+        <input id="maxItems" type="number" min="1" step="1" placeholder="不限">
+      </div>
+    </div>
+
+    <div class="row">
+      <div>
+        <label for="delayMs">请求间隔 ms</label>
+        <input id="delayMs" type="number" min="500" step="100" value="1200">
+      </div>
+      <div>
+        <label for="maxLinkedPages">最多翻页数</label>
+        <input id="maxLinkedPages" type="number" min="1" step="1" value="100">
+      </div>
+    </div>
+
+    <label class="check">
+      <input id="crawlLinkedPages" type="checkbox" checked>
+      尝试跟随列表页“下一页”
+    </label>
+
+    <label class="check">
+      <input id="includeDetails" type="checkbox">
+      补充商户详情页字段
+    </label>
+
+    <button id="start">开始导出</button>
+    <button id="stop" class="secondary">停止当前导出</button>
+    <div id="statusText"></div>
+
+    <script src="popup.js"></script>
+  </body>
+</html>
