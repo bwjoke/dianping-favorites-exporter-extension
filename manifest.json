@@ -1,0 +1,33 @@
+{
+  "manifest_version": 3,
+  "name": "Dianping Favorites Exporter Local",
+  "version": "0.1.0",
+  "description": "Export your own Dianping favorites from an already signed-in Chrome session.",
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Dianping Favorites Exporter"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "permissions": [
+    "activeTab",
+    "scripting"
+  ],
+  "host_permissions": [
+    "https://dianping.com/*",
+    "https://*.dianping.com/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "https://dianping.com/*",
+        "https://*.dianping.com/*"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "run_at": "document_idle"
+    }
+  ]
+}
